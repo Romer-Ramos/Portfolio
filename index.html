@@ -201,6 +201,7 @@ html.dark .blob{opacity:.16}
     <div class="project-card" data-i="2" tabindex="0" role="button" aria-label="View project details"><div class="project-num">Project 3</div><div class="project-title">Receivables and Accounting</div><div class="project-desc">Tracking of customer payments, including bounced and pulled-out checks, correct balance calculations, overpayment handling, and a withholding tax module following Philippine tax rules.</div><div class="built">Built with</div><div class="chips"><span class="chip">CakePHP</span><span class="chip">AngularJS</span><span class="chip">MySQL</span></div></div>
     <div class="project-card" data-i="3" tabindex="0" role="button" aria-label="View project details"><div class="project-num">Project 4</div><div class="project-title">Monitoring Dashboards</div><div class="project-desc">Dashboards for tracking client projects (work plans, terms, uploaded documents) and daily operations (deployments, attendance logs, payroll cut-offs and monthly calendars).</div><div class="built">Built with</div><div class="chips"><span class="chip">CakePHP</span><span class="chip">AngularJS</span></div></div>
     <div class="project-card" data-i="4" tabindex="0" role="button" aria-label="View project details"><div class="project-num">Project 5</div><div class="project-title">Records Management System</div><div class="project-desc">A system for organizing and archiving records, with a clearer dashboard, a calendar view, a dark mode option, and a reservation feature with approval and printing.</div><div class="built">Built with</div><div class="chips"><span class="chip">CakePHP</span><span class="chip">AngularJS</span><span class="chip">CSS</span></div></div>
+    <div class="project-card" data-i="5" tabindex="0" role="button" aria-label="View project details"><div class="project-num">Project 6</div><div class="project-title">WordPress Website</div><div class="project-desc">A website built on WordPress, set up so the owner can update pages and content without needing a developer.</div><div class="built">Built with</div><div class="chips"><span class="chip">WordPress</span><span class="chip">Website</span></div></div>
   </div>
 </section>
 
@@ -253,7 +254,7 @@ html.dark .blob{opacity:.16}
       <p class="m-over" id="mOver"></p>
       <div class="m-cols">
         <div><h4>Key features</h4><ul id="mFeat"></ul></div>
-        <div><h4>My role</h4><p id="mRole"></p><h4 style="margin-top:1.2rem">Built with</h4><div class="chips" id="mTech"></div></div>
+        <div><h4>My role</h4><p id="mRole"></p><h4 style="margin-top:1.2rem">Built with</h4><div class="chips" id="mTech"></div><a class="btn-secondary" id="mLink" target="_blank" rel="noopener" style="display:none;margin-top:1.2rem">Visit website &#8599;</a></div>
       </div>
     </div>
   </div>
@@ -284,7 +285,11 @@ const PROJECTS=[
 {num:'Project 5',title:'Records Management System',images:['images/ermis-1.jpg','images/ermis-2.jpg'],
  over:'A system for organizing, archiving and reserving records, used to keep documents easy to find.',
  feat:['Improved dashboard','Calendar view for archived records','Dark mode','Reservations with approve, delete, date columns and printing','Search and select an existing record when making a reservation'],
- role:'Built interface improvements and the reservation features.',tech:['CakePHP','AngularJS','CSS']}
+ role:'Built interface improvements and the reservation features.',tech:['CakePHP','AngularJS','CSS']},
+{num:'Project 6',title:'WordPress Website',images:['images/wordpress-1.jpg','images/wordpress-2.jpg','images/wordpress-3.jpg'],link:'',
+ over:'A website built on WordPress, set up so the owner can keep it up to date without needing a developer.',
+ feat:['Pages laid out for easy reading on computers and phones','Content the owner can edit from the WordPress dashboard','Contact details and key information easy to find'],
+ role:'Built and set up the website.',tech:['WordPress']}
 ];
 var modal=document.getElementById('modal'),cur=null,imgs=[],gi=0,lastFocus=null;
 function showImg(){
@@ -305,6 +310,7 @@ function openProject(i){
   document.getElementById('mFeat').innerHTML=cur.feat.map(function(f){return '<li>'+f+'</li>'}).join('');
   document.getElementById('mTech').innerHTML=cur.tech.map(function(t){return '<span class="chip">'+t+'</span>'}).join('');
   document.getElementById('mBanner').textContent=cur.title;
+  var ml=document.getElementById('mLink');ml.style.display=cur.link?'inline-block':'none';if(cur.link)ml.href=cur.link;
   imgs=[];gi=0;showImg();
   cur.images.forEach(function(src){var t=new Image();t.onload=function(){if(cur&&cur.images.indexOf(src)>-1&&imgs.indexOf(src)<0){imgs.push(src);imgs.sort(function(a,b){return cur.images.indexOf(a)-cur.images.indexOf(b)});showImg();}};t.src=src;});
   modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
