@@ -4,253 +4,323 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Romer Ramos — Full-Stack Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a26;--accent:#00cc6a;--accent2:#7c3aed;--accent3:#06b6d4;--text:#e2e8f0;--muted:#64748b;--border:rgba(255,255,255,.07);--mono:'JetBrains Mono',monospace;--sans:'Syne',sans-serif}
-html.light{--bg:#f4f4f0;--bg2:#fff;--bg3:#e8e8e2;--accent:#059050;--accent2:#6d28d9;--accent3:#0891b2;--text:#0f172a;--border:rgba(0,0,0,.1)}
+:root{--bg:#f7f8fb;--card:#fff;--soft:#eef2f9;--accent:#2563eb;--accent2:#7c3aed;--accent3:#0891b2;--text:#1e293b;--muted:#5b6678;--border:rgba(15,23,42,.1);--shadow:0 4px 20px rgba(15,23,42,.06);--font:'Plus Jakarta Sans',-apple-system,"Segoe UI",Arial,sans-serif}
+html.dark{--bg:#0f1420;--card:#171e2e;--soft:#1e2740;--accent:#6c9bff;--accent2:#a78bfa;--accent3:#38bdf8;--text:#e8edf5;--muted:#9aa6bb;--border:rgba(255,255,255,.09);--shadow:none}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;transition:background .3s,color .3s}
-.grid-bg{position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(10,10,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-html.light nav{background:rgba(244,244,240,.88)}
-.nav-logo{font-family:var(--mono);font-size:.85rem;color:var(--accent)}
-.nav-logo span{color:var(--muted)}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.7;overflow-x:hidden;transition:background .3s,color .3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:var(--card);border-bottom:1px solid var(--border)}
+.nav-logo{font-weight:800;font-size:1.05rem}
+.nav-logo span{color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:2rem}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-family:var(--mono);font-size:.75rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{font-size:.92rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--accent)}
-.theme-toggle{display:flex;align-items:center;gap:.5rem;background:var(--bg2);border:1px solid var(--border);padding:.4rem .9rem;cursor:pointer;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
-.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:5rem 3rem 0}
-.profile-pic-wrap{width:110px;height:110px;border-radius:50%;position:relative;margin-bottom:2rem}
-.profile-pic-wrap::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(var(--accent),var(--accent3),var(--accent2),var(--accent));animation:spin 6s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.profile-pic-inner{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;background:var(--bg2);border:3px solid var(--bg);overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.theme-toggle{display:flex;align-items:center;gap:.4rem;background:var(--soft);border:1px solid var(--border);border-radius:999px;padding:.4rem .9rem;cursor:pointer;font:500 .82rem var(--font);color:var(--text)}
+.theme-toggle:hover{border-color:var(--accent)}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:space-between;gap:3rem;padding:7rem 3rem 4rem;max-width:1200px;margin:0 auto}
+.hero-main{max-width:600px}
+.profile-pic-wrap{width:120px;height:120px;border-radius:50%;position:relative;margin-bottom:1.75rem}
+.profile-pic-wrap::before{content:'';position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(var(--accent),var(--accent3),var(--accent2),var(--accent))}
+.profile-pic-inner{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;background:var(--card);border:4px solid var(--bg);overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .profile-pic-inner img{width:100%;height:100%;object-fit:cover;display:none}
 .profile-pic-inner img.loaded{display:block}
-.profile-placeholder{display:flex;flex-direction:column;align-items:center;gap:4px}
-.profile-placeholder-icon{width:36px;height:36px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center}
-.profile-placeholder-icon svg{width:20px;height:20px;fill:var(--muted)}
-.profile-upload-hint{font-family:var(--mono);font-size:.6rem;color:var(--muted);text-align:center;line-height:1.4}
-.profile-pic-inner:hover .profile-upload-hint{color:var(--accent)}
+.profile-placeholder{text-align:center;font-size:.68rem;color:var(--muted);line-height:1.3}
+.profile-placeholder svg{width:30px;height:30px;fill:var(--muted);display:block;margin:0 auto 2px}
+.profile-pic-inner:hover .profile-placeholder{color:var(--accent)}
 input#photo-upload{display:none}
-.hero-tag{font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
-.hero-tag::before{content:'';width:32px;height:1px;background:var(--accent)}
-.hero h1{font-size:clamp(3rem,8vw,7rem);font-weight:800;line-height:.95;letter-spacing:-.03em;margin-bottom:1.5rem}
-.hero h1 .role{display:block;background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-desc{font-family:var(--mono);font-size:.9rem;color:var(--muted);max-width:480px;line-height:1.8;margin-bottom:2.5rem}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-primary{font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.875rem 2rem;background:var(--accent);color:#fff;border:none;cursor:pointer;font-weight:700;transition:transform .15s,box-shadow .15s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,200,100,.25)}
-.btn-secondary{font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.875rem 2rem;background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--soft);color:var(--accent);font-size:.85rem;font-weight:600;padding:.35rem .9rem;border-radius:999px;margin-bottom:1.25rem}
+.hero-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:#22c55e}
+.hero h1{font-size:clamp(2.6rem,6vw,4.2rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin-bottom:1rem}
+.hero h1 .role{display:block;font-size:.55em;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-top:.4rem}
+.hero-desc{font-size:1.08rem;color:var(--muted);margin-bottom:2rem}
+.hero-actions{display:flex;gap:.9rem;flex-wrap:wrap}
+.btn-primary,.btn-secondary{font:600 .95rem var(--font);padding:.8rem 1.7rem;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .15s,box-shadow .15s}
+.btn-primary{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.25)}
+.btn-secondary{background:var(--card);color:var(--text);border:1px solid var(--border)}
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
-.hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border)}
-.stat-num{font-family:var(--mono);font-size:1.75rem;font-weight:700;color:var(--accent)}
-.stat-label{font-family:var(--mono);font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.25rem}
-.terminal-float{position:absolute;right:3rem;top:50%;transform:translateY(-40%);width:430px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:none}
-@media(min-width:1100px){.terminal-float{display:block}}
-.terminal-bar{background:var(--bg3);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border)}
-.dot{width:10px;height:10px;border-radius:50%}.dot.r{background:#ff5f57}.dot.y{background:#ffbd2e}.dot.g{background:#28c840}
-.terminal-title{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-left:auto}
-.terminal-body{padding:1.25rem;font-family:var(--mono);font-size:.76rem;line-height:1.9}
-.t-green{color:var(--accent)}.t-blue{color:var(--accent3)}.t-purple{color:#a78bfa}.t-muted{color:var(--muted)}.t-white{color:var(--text)}
-.cursor{display:inline-block;width:8px;height:14px;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:-2px}
-@keyframes blink{50%{opacity:0}}
-section{position:relative;z-index:1;padding:5rem 3rem}
-.section-label{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.25em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem}
-.section-label::after{content:'';flex:1;height:1px;background:var(--border);max-width:200px}
-.section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.02em;margin-bottom:3rem}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
-.skill-cell{background:var(--bg);padding:1.5rem;transition:background .2s}
-.skill-cell:hover{background:var(--bg2)}
-.skill-icon{font-family:var(--mono);font-size:.7rem;color:var(--accent);margin-bottom:.75rem;letter-spacing:.1em}
-.skill-name{font-size:1rem;font-weight:600;margin-bottom:.5rem}
-.skill-sub{font-family:var(--mono);font-size:.72rem;color:var(--muted);line-height:1.6}
-.skill-bar{height:2px;background:var(--border);margin-top:.75rem;position:relative;overflow:hidden}
-.skill-bar-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--accent),var(--accent3))}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
-.project-card{background:var(--bg2);border:1px solid var(--border);padding:2rem 2rem 3rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
-.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent3));transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.project-card:hover{border-color:rgba(0,200,100,.25);transform:translateY(-4px)}
-.project-card:hover::before{transform:scaleX(1)}
-.project-num{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-bottom:1rem}
-.project-title{font-size:1.25rem;font-weight:700;margin-bottom:.75rem}
-.project-desc{font-family:var(--mono);font-size:.78rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
-.project-tags{display:flex;flex-wrap:wrap;gap:.5rem}
-.tag{font-family:var(--mono);font-size:.68rem;color:var(--accent);border:1px solid rgba(0,160,80,.25);padding:.25rem .6rem;letter-spacing:.05em}
-.timeline{position:relative;padding-left:2rem}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),transparent)}
-.timeline-item{position:relative;padding:0 0 3rem 2rem}
-.timeline-item::before{content:'';position:absolute;left:-4px;top:6px;width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 12px var(--accent)}
-.timeline-date{font-family:var(--mono);font-size:.7rem;color:var(--accent3);letter-spacing:.1em;margin-bottom:.5rem}
-.timeline-company{font-size:1.1rem;font-weight:700;margin-bottom:.25rem}
-.timeline-role{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-bottom:1rem}
-.timeline-desc{font-family:var(--mono);font-size:.78rem;color:var(--muted);line-height:1.8}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-@media(max-width:700px){.contact-grid{grid-template-columns:1fr}nav{padding:1rem 1.25rem}.nav-links{display:none}section,.hero{padding-left:1.25rem;padding-right:1.25rem}.hero-stats{gap:1.5rem}}
-.contact-text{font-family:var(--mono);font-size:.85rem;color:var(--muted);line-height:1.9;margin-bottom:2rem}
-.contact-links{display:flex;flex-direction:column;gap:.75rem}
-.contact-link{display:flex;align-items:center;gap:1rem;font-family:var(--mono);font-size:.8rem;color:var(--text);text-decoration:none;padding:.75rem 1rem;border:1px solid var(--border);background:var(--bg2);transition:border-color .2s,color .2s}
-.contact-link:hover{border-color:var(--accent);color:var(--accent)}
-.contact-link-icon{color:var(--accent3);font-size:.7rem;min-width:80px}
-.form-group{margin-bottom:1.25rem}
-.form-label{display:block;font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
-.form-input,.form-textarea{width:100%;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:.85rem;padding:.75rem 1rem;outline:none}
-.form-input:focus,.form-textarea:focus{border-color:var(--accent)}
-.form-textarea{resize:vertical;min-height:100px}
-footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.footer-text{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
-.footer-accent{color:var(--accent)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.fade-up{animation:fadeUp .7s ease both}.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.35s}.delay-4{animation-delay:.5s}.delay-5{animation-delay:.65s}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:1.75rem;border-top:1px solid var(--border)}
+.stat-num{font-size:1.9rem;font-weight:800;color:var(--accent)}
+.stat-label{font-size:.85rem;color:var(--muted)}
+.glance{width:340px;flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;box-shadow:var(--shadow)}
+.glance h3{font-size:1rem;margin-bottom:1.1rem}
+.glance dl div{padding:.7rem 0;border-top:1px solid var(--border)}
+.glance dt{font-size:.75rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.glance dd{font-size:.95rem}
+@media(max-width:980px){.glance{display:none}}
+section.block{padding:5rem 3rem;max-width:1200px;margin:0 auto}
+.section-label{font-size:.85rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.5rem}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:800;letter-spacing:-.01em;margin-bottom:.6rem}
+.section-intro{color:var(--muted);max-width:620px;margin-bottom:2.5rem}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem}
+.skill-cell{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:12px;padding:1.5rem;box-shadow:var(--shadow);transition:transform .25s}
+.skill-cell:nth-child(3n+2){border-top-color:var(--accent2)}
+.skill-cell:nth-child(3n){border-top-color:var(--accent3)}
+.skill-cell:hover{transform:translateY(-3px)}
+.skill-name{font-size:1.05rem;font-weight:700;margin-bottom:.4rem}
+.skill-sub{font-size:.92rem;color:var(--muted);margin-bottom:.9rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{font-size:.78rem;font-weight:500;color:var(--accent);background:var(--soft);padding:.2rem .65rem;border-radius:999px}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.9rem;box-shadow:var(--shadow);transition:transform .25s,border-color .25s}
+.project-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.project-num{font-size:.8rem;font-weight:700;color:var(--accent2);margin-bottom:.6rem}
+.project-title{font-size:1.2rem;font-weight:700;margin-bottom:.6rem}
+.project-desc{font-size:.95rem;color:var(--muted);margin-bottom:1.1rem}
+.built{font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.timeline{border-left:2px solid var(--border);margin-left:.5rem;padding-left:2rem}
+.timeline-item{position:relative;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;box-shadow:var(--shadow)}
+.timeline-item::before{content:'';position:absolute;left:-2.55rem;top:2rem;width:14px;height:14px;background:var(--accent);border:3px solid var(--bg);border-radius:50%}
+.timeline-date{font-size:.85rem;font-weight:600;color:var(--accent);margin-bottom:.3rem}
+.timeline-company{font-size:1.2rem;font-weight:700}
+.timeline-role{color:var(--muted);margin-bottom:.9rem}
+.timeline-item ul{margin-left:1.2rem;color:var(--muted)}
+.timeline-item li{margin-bottom:.4rem}
+.contact-wrap{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:3rem;box-shadow:var(--shadow);text-align:center}
+.contact-wrap .section-intro{margin:0 auto 2rem}
+.contact-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:2rem;text-align:left}
+.contact-link{display:block;text-decoration:none;color:var(--text);background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;transition:border-color .2s}
+.contact-link:hover{border-color:var(--accent)}
+.contact-link small{display:block;font-size:.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
+.contact-link span{font-size:.92rem;word-break:break-all}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;text-align:center;font-size:.85rem;color:var(--muted)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.fade-up{animation:fadeUp .7s ease both}.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
+@media(max-width:700px){nav{padding:.9rem 1.25rem}.nav-links{display:none}.hero,section.block{padding-left:1.25rem;padding-right:1.25rem}.hero-stats{gap:1.5rem}.contact-wrap{padding:2rem 1.25rem}}
+
+.profile-pic-inner{cursor:default}
+.profile-pic-inner img{display:block}
+.initials{display:none;font-size:2.2rem;font-weight:800;color:var(--accent)}
+.no-photo .profile-pic-inner img{display:none}.no-photo .initials{display:block}
+section.block,footer{position:relative;z-index:1}
+.bg-anim{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.22;animation:drift 22s ease-in-out infinite alternate}
+.b1{width:520px;height:520px;background:var(--accent);top:-120px;left:-100px}
+.b2{width:460px;height:460px;background:var(--accent2);top:35%;right:-120px;animation-duration:28s;animation-delay:-8s}
+.b3{width:420px;height:420px;background:var(--accent3);bottom:-120px;left:30%;animation-duration:25s;animation-delay:-14s}
+html.dark .blob{opacity:.16}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,40px) scale(1.12)}100%{transform:translate(-50px,90px) scale(.95)}}
+.project-card{cursor:pointer}
+.project-card::after{content:'View details \2192';display:block;margin-top:1.1rem;font-size:.85rem;font-weight:600;color:var(--accent)}
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:1.25rem;background:rgba(15,23,42,.6);backdrop-filter:blur(6px)}
+.modal.open{display:flex;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-card{position:relative;background:var(--card);border-radius:18px;width:100%;max-width:860px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;top:.8rem;right:.8rem;z-index:5;width:38px;height:38px;border-radius:50%;border:none;background:rgba(15,23,42,.65);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer}
+.modal-close:hover{background:var(--accent)}
+.gallery{position:relative;aspect-ratio:16/9;background:var(--soft);border-radius:18px 18px 0 0;overflow:hidden}
+.g-img{width:100%;height:100%;object-fit:contain;background:var(--soft);display:none}
+.g-banner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;font-size:1.6rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));background-size:200% 200%;animation:shift 10s ease infinite}
+.g-img:not([style*="none"])~.g-banner{display:none}
+@keyframes shift{50%{background-position:100% 50%}}
+.g-nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:none;background:rgba(15,23,42,.65);color:#fff;font-size:1.6rem;cursor:pointer;display:none}
+.g-nav:hover{background:var(--accent)}.g-prev{left:.8rem}.g-next{right:.8rem}
+.g-count{position:absolute;bottom:.7rem;right:.9rem;background:rgba(15,23,42,.65);color:#fff;font-size:.78rem;padding:.15rem .6rem;border-radius:999px;display:none}
+.modal-body{padding:1.75rem 2rem 2rem}
+.modal-body h3{font-size:1.6rem;font-weight:800;margin-bottom:.6rem}
+.m-over{color:var(--muted);margin-bottom:1.5rem}
+.m-cols{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem}
+.m-cols h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.m-cols ul{margin-left:1.1rem;color:var(--muted);font-size:.95rem}
+.m-cols li{margin-bottom:.4rem}
+.m-cols p{color:var(--muted);font-size:.95rem}
+@media(max-width:700px){.m-cols{grid-template-columns:1fr}.modal-body{padding:1.25rem}}
+@media(prefers-reduced-motion:reduce){.blob,.g-banner,.fade-up,.modal-card{animation:none}}
 </style>
 </head>
 <body>
-<div class="grid-bg"></div>
+<div class="bg-anim" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
 
 <nav>
-  <div class="nav-logo"><span>~/</span>romer-portfolio</div>
+  <div class="nav-logo">Romer <span>Ramos</span></div>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#skills">Skills</a></li>
+      <li><a href="#skills">What I Do</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="theme-toggle" onclick="toggleTheme()"><span id="toggleIcon">☀</span><span id="toggleLabel">Light</span></button>
+    <button class="theme-toggle" onclick="toggleTheme()"><span id="toggleIcon">☾</span><span id="toggleLabel">Dark</span></button>
   </div>
 </nav>
 
-<section class="hero" id="home">
-  <div class="profile-pic-wrap fade-up">
-    <div class="profile-pic-inner" onclick="document.getElementById('photo-upload').click()" title="Click to upload photo">
-      <img id="profile-img" alt="Romer Ramos">
-      <div class="profile-placeholder" id="profile-placeholder">
-        <div class="profile-placeholder-icon"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-        <div class="profile-upload-hint">click to<br>upload</div>
-      </div>
+<header class="hero" id="home">
+  <div class="hero-main">
+    <div class="profile-pic-wrap fade-up" id="photoWrap">
+      <div class="profile-pic-inner"><img src="profile.jpg" alt="Romer Ramos" onerror="document.getElementById('photoWrap').classList.add('no-photo')"><span class="initials">RR</span></div>
+    </div>
+    <div class="hero-tag fade-up d1">Available for work</div>
+    <h1 class="fade-up d2">Romer Ramos<span class="role">Full-Stack Web Developer</span></h1>
+    <p class="hero-desc fade-up d2">I build and maintain web-based business systems, handling everything from the database to the screens people use to the printed reports they rely on. I am also building my skills in software testing and quality assurance.</p>
+    <div class="hero-actions fade-up d3">
+      <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
+      <a class="btn-secondary" href="mailto:romervramos@gmail.com">Email Me</a>
+    </div>
+    <div class="hero-stats fade-up d3">
+      <div><div class="stat-num">7+</div><div class="stat-label">Business systems</div></div>
+      <div><div class="stat-num">5</div><div class="stat-label">Industries served</div></div>
     </div>
   </div>
-  <input type="file" id="photo-upload" accept="image/*">
+  <aside class="glance fade-up d3">
+    <h3>At a glance</h3>
+    <dl>
+      <div><dt>Current role</dt><dd>Full-Stack Web and Software Developer, My Creative Panda Inc.</dd></div>
+      <div><dt>Location</dt><dd>Philippines</dd></div>
+      <div><dt>Main tools</dt><dd>PHP, CakePHP, AngularJS, MySQL</dd></div>
+      <div><dt>Looking for</dt><dd>Full-time developer or System QA roles</dd></div>
+    </dl>
+  </aside>
+</header>
 
-  <div class="hero-tag fade-up delay-1">Available for work · Philippines</div>
-  <h1 class="fade-up delay-2"><span class="name">Romer Ramos</span><br><span class="role">Full-Stack<br>Developer</span></h1>
-  <p class="hero-desc fade-up delay-2">I build and maintain business systems end to end: from MySQL queries to AngularJS screens to printable PDFs. CakePHP, reporting, and untangling legacy code are my home turf.</p>
-  <div class="hero-actions fade-up delay-3">
-    <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
-    <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
-  </div>
-  <div class="hero-stats fade-up delay-4">
-    <div><div class="stat-num">7+</div><div class="stat-label">Business Systems</div></div>
-    <div><div class="stat-num">5</div><div class="stat-label">Industries Served</div></div>
-    <div><div class="stat-num">DB→UI→Print</div><div class="stat-label">Full Ownership</div></div>
-  </div>
-
-  <div class="terminal-float fade-up delay-5">
-    <div class="terminal-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><div class="terminal-title">romer@dev ~ zsh</div></div>
-    <div class="terminal-body">
-      <div><span class="t-green">➜</span> <span class="t-blue">~</span> <span class="t-muted">whoami</span></div>
-      <div class="t-white" style="padding-left:1rem">Full-Stack Developer (PHP / AngularJS)</div><br>
-      <div><span class="t-green">➜</span> <span class="t-blue">~</span> <span class="t-muted">cat stack.json</span></div>
-      <div style="padding-left:1rem">
-        <span class="t-purple">"backend"</span><span class="t-muted">: [</span><span class="t-green">"PHP"</span><span class="t-muted">,</span> <span class="t-green">"CakePHP 2.x"</span><span class="t-muted">],</span><br>
-        <span class="t-purple">"frontend"</span><span class="t-muted">: [</span><span class="t-green">"AngularJS"</span><span class="t-muted">,</span> <span class="t-green">"jQuery"</span><span class="t-muted">],</span><br>
-        <span class="t-purple">"data"</span><span class="t-muted">: [</span><span class="t-green">"MySQL"</span><span class="t-muted">,</span> <span class="t-green">"Python"</span><span class="t-muted">],</span><br>
-        <span class="t-purple">"learning"</span><span class="t-muted">: [</span><span class="t-green">"Playwright"</span><span class="t-muted">,</span> <span class="t-green">"Postman"</span><span class="t-muted">]</span>
-      </div><br>
-      <div><span class="t-green">➜</span> <span class="t-blue">~</span> <span class="t-muted">git log --oneline -3</span></div>
-      <div style="padding-left:1rem"><span class="t-blue">a4f2d1c</span> feat: xendit online booking<br><span class="t-blue">3e9b0f7</span> fix: bounce check balance calc<br><span class="t-blue">c12aa3e</span> feat: DTR inclusions report</div><br>
-      <div><span class="t-green">➜</span> <span class="t-blue">~</span> <span class="cursor"></span></div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="section-label">01 / expertise</div>
-  <h2 class="section-title">Tech Stack</h2>
+<section class="block" id="skills">
+  <div class="section-label">What I Do</div>
+  <h2 class="section-title">Skills</h2>
+  <p class="section-intro">The areas I work in every day, and the tools I use for each.</p>
   <div class="skills-grid">
-    <div class="skill-cell"><div class="skill-icon">// backend</div><div class="skill-name">PHP & CakePHP 2.x</div><div class="skill-sub">Controllers, models, custom paginate() with raw SQL builders</div><div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div></div>
-    <div class="skill-cell"><div class="skill-icon">// frontend</div><div class="skill-name">AngularJS</div><div class="skill-sub">Controllers, $resource factories, CTP view templates</div><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div></div>
-    <div class="skill-cell"><div class="skill-icon">// database</div><div class="skill-name">MySQL</div><div class="skill-sub">Complex reporting queries, schema fixes, large dump imports</div><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div></div>
-    <div class="skill-cell"><div class="skill-icon">// reporting</div><div class="skill-name">PDF & Excel Output</div><div class="skill-sub">FPDF / ConductPDF, Excel exports, dot-matrix print layouts</div><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div></div>
-    <div class="skill-cell"><div class="skill-icon">// ui</div><div class="skill-name">HTML, CSS & jQuery</div><div class="skill-sub">Dashboards, modals, dark mode, form validation</div><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
-    <div class="skill-cell"><div class="skill-icon">// integrations</div><div class="skill-name">Payments & Data Audits</div><div class="skill-sub">Xendit gateway; Python scripts for SQL dump comparison</div><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
-    <div class="skill-cell"><div class="skill-icon">// legacy code</div><div class="skill-name">Debugging & Refactoring</div><div class="skill-sub">Tracing data bugs and PDF-vs-web mismatches in inherited code</div><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div></div>
-    <div class="skill-cell"><div class="skill-icon">// now learning</div><div class="skill-name">QA & Test Automation</div><div class="skill-sub">Playwright, Postman, Jira: moving toward System QA</div><div class="skill-bar"><div class="skill-bar-fill" style="width:35%"></div></div></div>
+    <div class="skill-cell"><div class="skill-name">Building the system behind the scenes</div><div class="skill-sub">Creating the logic that processes data, users and transactions.</div><div class="chips"><span class="chip">PHP</span><span class="chip">CakePHP</span></div></div>
+    <div class="skill-cell"><div class="skill-name">Designing what users see</div><div class="skill-sub">Screens, dashboards, forms and filters that are clear and easy to use.</div><div class="chips"><span class="chip">AngularJS</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">jQuery</span></div></div>
+    <div class="skill-cell"><div class="skill-name">Working with data</div><div class="skill-sub">Storing, searching and reporting on large amounts of business data.</div><div class="chips"><span class="chip">MySQL</span><span class="chip">Python</span></div></div>
+    <div class="skill-cell"><div class="skill-name">Reports and printing</div><div class="skill-sub">PDF and Excel reports, plus layouts for printed tickets and forms.</div><div class="chips"><span class="chip">PDF</span><span class="chip">Excel</span><span class="chip">Print layouts</span></div></div>
+    <div class="skill-cell"><div class="skill-name">Online payments</div><div class="skill-sub">Connecting booking systems to online payment services.</div><div class="chips"><span class="chip">Xendit</span></div></div>
+    <div class="skill-cell"><div class="skill-name">Fixing and improving</div><div class="skill-sub">Finding and solving problems in existing systems.</div><div class="chips"><span class="chip">Troubleshooting</span><span class="chip">Data checks</span></div></div>
+    <div class="skill-cell"><div class="skill-name">Software testing (learning)</div><div class="skill-sub">Building skills in automated testing and bug tracking.</div><div class="chips"><span class="chip">Playwright</span><span class="chip">Postman</span><span class="chip">Jira</span></div></div>
   </div>
 </section>
 
-<section id="projects">
-  <div class="section-label">02 / work</div>
+<section class="block" id="projects">
+  <div class="section-label">My Work</div>
   <h2 class="section-title">Projects</h2>
+  <p class="section-intro">Systems I have built or improved for real organizations.</p>
   <div class="projects-grid">
-    <div class="project-card"><div class="project-num">PROJECT_01</div><div class="project-title">Ferry Ticketing &amp; Online Booking</div><div class="project-desc">Passenger tickets, Bills of Lading, branch and connecting-trip sales reports, trip upgrade/reschedule/transfer with history, a visual cot picker, and Xendit-powered online booking. Printing tuned for dot-matrix carbonless forms.</div><div class="project-tags"><span class="tag">CakePHP</span><span class="tag">AngularJS</span><span class="tag">FPDF</span><span class="tag">Xendit</span><span class="tag">MySQL</span></div></div>
-    <div class="project-card"><div class="project-num">PROJECT_02</div><div class="project-title">HRIS &amp; Payroll Reports</div><div class="project-desc">Employee management with branch, position, status and vessel filters, plus reports such as Years in Service and DTR Inclusions with cut-off history and custom filters.</div><div class="project-tags"><span class="tag">CakePHP</span><span class="tag">AngularJS</span><span class="tag">MySQL</span><span class="tag">Reports</span></div></div>
-    <div class="project-card"><div class="project-num">PROJECT_03</div><div class="project-title">Receivables &amp; Accounting</div><div class="project-desc">Bounce and pull-out check reports, balance computation fixes, overpayment handling, and a withholding tax codes module built end to end for Philippine BIR/EWT rules.</div><div class="project-tags"><span class="tag">CakePHP 2.x</span><span class="tag">Raw SQL</span><span class="tag">AngularJS</span></div></div>
-    <div class="project-card"><div class="project-num">PROJECT_04</div><div class="project-title">Monitoring Dashboards</div><div class="project-desc">Project-Based Monitoring (workplan, terms, TOR file uploads) and Daily Monitoring (per-client deployments, logs, payroll cut-offs, monthly day grids), each with tabbed dashboards.</div><div class="project-tags"><span class="tag">CakePHP</span><span class="tag">AngularJS</span><span class="tag">File Upload</span></div></div>
-    <div class="project-card"><div class="project-num">PROJECT_05</div><div class="project-title">ERMIS Records Management</div><div class="project-desc">Records system with an improved dashboard, calendar view for archived records, dark mode, and a reservation module with approve, delete, print and search-and-select.</div><div class="project-tags"><span class="tag">CakePHP</span><span class="tag">AngularJS</span><span class="tag">CSS</span><span class="tag">Dark Mode</span></div></div>
-    <!-- <div class="project-card"><div class="project-num">PROJECT_06</div><div class="project-title">e-LMS Management System</div><div class="project-desc">Document management, PDF print actions, leave status tabs, overtime disapproval, a full Reservation Records report, and a login page and sidebar redesign.</div><div class="project-tags"><span class="tag">CakePHP</span><span class="tag">AngularJS</span><span class="tag">FPDF</span><span class="tag">MySQL</span></div></div> -->
+    <div class="project-card" data-i="0" tabindex="0" role="button" aria-label="View project details"><div class="project-num">Project 1</div><div class="project-title">Ferry Ticketing and Online Booking</div><div class="project-desc">A system for selling passenger tickets and handling cargo documents. It includes sales reports, changes to trips (upgrade, reschedule, transfer), a visual seat and berth picker, and online booking with payments. Printing is set up for carbon-copy forms.</div><div class="built">Built with</div><div class="chips"><span class="chip">CakePHP</span><span class="chip">AngularJS</span><span class="chip">MySQL</span><span class="chip">Xendit</span></div></div>
+    <div class="project-card" data-i="1" tabindex="0" role="button" aria-label="View project details"><div class="project-num">Project 2</div><div class="project-title">HR and Payroll Reports</div><div class="project-desc">Employee records with search and filters by branch, position, status and vessel, plus reports on years of service and which pay periods an employee's attendance was included in.</div><div class="built">Built with</div><div class="chips"><span class="chip">CakePHP</span><span class="chip">AngularJS</span><span class="chip">MySQL</span></div></div>
+    <div class="project-card" data-i="2" tabindex="0" role="button" aria-label="View project details"><div class="project-num">Project 3</div><div class="project-title">Receivables and Accounting</div><div class="project-desc">Tracking of customer payments, including bounced and pulled-out checks, correct balance calculations, overpayment handling, and a withholding tax module following Philippine tax rules.</div><div class="built">Built with</div><div class="chips"><span class="chip">CakePHP</span><span class="chip">AngularJS</span><span class="chip">MySQL</span></div></div>
+    <div class="project-card" data-i="3" tabindex="0" role="button" aria-label="View project details"><div class="project-num">Project 4</div><div class="project-title">Monitoring Dashboards</div><div class="project-desc">Dashboards for tracking client projects (work plans, terms, uploaded documents) and daily operations (deployments, attendance logs, payroll cut-offs and monthly calendars).</div><div class="built">Built with</div><div class="chips"><span class="chip">CakePHP</span><span class="chip">AngularJS</span></div></div>
+    <div class="project-card" data-i="4" tabindex="0" role="button" aria-label="View project details"><div class="project-num">Project 5</div><div class="project-title">Records Management System</div><div class="project-desc">A system for organizing and archiving records, with a clearer dashboard, a calendar view, a dark mode option, and a reservation feature with approval and printing.</div><div class="built">Built with</div><div class="chips"><span class="chip">CakePHP</span><span class="chip">AngularJS</span><span class="chip">CSS</span></div></div>
   </div>
 </section>
 
-<section id="experience">
-  <div class="section-label">03 / history</div>
+<section class="block" id="experience">
+  <div class="section-label">Background</div>
   <h2 class="section-title">Experience</h2>
   <div class="timeline">
     <div class="timeline-item">
-      <div class="timeline-date">February 2026 — PRESENT</div>
+      <div class="timeline-date">February 2026 – Present</div>
       <div class="timeline-company">My Creative Panda Inc.</div>
       <div class="timeline-role">Full-Stack Web and Software Developer</div>
-      <div class="timeline-desc">Build and maintain multiple CakePHP/AngularJS systems across maritime ticketing, HR and payroll, records management, lending, and logistics. Own features from SQL to UI to PDF output, debug inherited code, and coordinate with clients on requirements and updates.</div>
+      <ul>
+        <li>Build and maintain several web systems for shipping, HR and payroll, records management, lending and logistics.</li>
+        <li>Take features from the database all the way to the final printed or exported report.</li>
+        <li>Fix problems in existing systems and work with clients to understand requirements and share updates.</li>
+      </ul>
     </div>
-    <!-- <div class="timeline-item">
-      <div class="timeline-date">[YEAR] — [YEAR]</div>
-      <div class="timeline-company">[Previous Role]</div>
-      <div class="timeline-role">[Title]</div>
-      <div class="timeline-desc">[Add earlier roles here, or delete this block.]</div>
-    </div> -->
   </div>
 </section>
 
-<section id="contact">
-  <div class="section-label">04 / connect</div>
-  <h2 class="section-title">Get in Touch</h2>
-  <div class="contact-grid">
-    <div>
-      <p class="contact-text">Open to full-time roles, contracts, and system QA opportunities. Based in the Philippines. If you have a system that needs building or fixing, let's talk.</p>
-      <div class="contact-links">
-        <a class="contact-link" href="#"><span class="contact-link-icon">// EMAIL</span>romervramos@gmail.com</a>
-        <a class="contact-link" href="#"><span class="contact-link-icon">// GITHUB</span>github.com/Romer-Ramos</a>
-        <a class="contact-link" href="#"><span class="contact-link-icon">// LINKEDIN</span>linkedin.com/in/romer-ramos-b2007237a/</a>
+<section class="block" id="contact">
+  <div class="contact-wrap">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's work together</h2>
+    <p class="section-intro">I am open to full-time roles and System QA opportunities. Feel free to reach out.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:romervramos@gmail.com"><small>Email</small><span>romervramos@gmail.com</span></a>
+      <a class="contact-link" href="https://github.com/Romer-Ramos"><small>GitHub</small><span>github.com/Romer-Ramos</span></a>
+      <a class="contact-link" href="https://linkedin.com/in/romer-ramos-b2007237a/"><small>LinkedIn</small><span>linkedin.com/in/romer-ramos-b2007237a</span></a>
+    </div>
+    <a class="btn-primary" href="mailto:romervramos@gmail.com">Send Me an Email</a>
+  </div>
+</section>
+
+<footer>© 2026 Romer Ramos · Philippines</footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="modal-close" id="mClose" aria-label="Close">&times;</button>
+    <div class="gallery" id="mGallery">
+      <div class="g-banner" id="mBanner"></div>
+      <img class="g-img" id="mImg" alt="">
+      <button class="g-nav g-prev" id="gPrev" aria-label="Previous image">&#8249;</button>
+      <button class="g-nav g-next" id="gNext" aria-label="Next image">&#8250;</button>
+      <div class="g-count" id="gCount"></div>
+    </div>
+    <div class="modal-body">
+      <div class="project-num" id="mNum"></div>
+      <h3 id="mTitle"></h3>
+      <p class="m-over" id="mOver"></p>
+      <div class="m-cols">
+        <div><h4>Key features</h4><ul id="mFeat"></ul></div>
+        <div><h4>My role</h4><p id="mRole"></p><h4 style="margin-top:1.2rem">Built with</h4><div class="chips" id="mTech"></div></div>
       </div>
     </div>
-    <div>
-      <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" placeholder="Your name"></div>
-      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="your@email.com"></div>
-      <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell me about your project..."></textarea></div>
-      <button class="btn-primary" style="width:100%">Send Message</button>
-    </div>
   </div>
-</section>
-
-<footer>
-  <div class="footer-text">© 2026 <span class="footer-accent">Romer Ramos</span></div>
-  <div class="footer-text">Designed &amp; developed by <span class="footer-accent">Romer Ramos</span></div>
-</footer>
-
+</div>
 <script>
 function toggleTheme(){
-  var l=document.documentElement.classList.toggle('light');
-  document.getElementById('toggleIcon').textContent=l?'◐':'☀';
-  document.getElementById('toggleLabel').textContent=l?'Dark':'Light';
+  var d=document.documentElement.classList.toggle('dark');
+  document.getElementById('toggleIcon').textContent=d?'☀':'☾';
+  document.getElementById('toggleLabel').textContent=d?'Light':'Dark';
 }
-document.getElementById('photo-upload').addEventListener('change',function(e){
-  var f=e.target.files[0];if(!f)return;
-  var r=new FileReader();
-  r.onload=function(ev){var i=document.getElementById('profile-img');i.src=ev.target.result;i.classList.add('loaded');document.getElementById('profile-placeholder').style.display='none'};
-  r.readAsDataURL(f);
+const PROJECTS=[
+{num:'Project 1',title:'Ferry Ticketing and Online Booking',images:['images/ferry-1.jpg','images/ferry-2.jpg','images/ferry-3.jpg'],
+ over:'A ticketing system for a ferry company that handles passenger tickets, cargo documents and sales reporting across branches, with an online booking site for customers.',
+ feat:['Passenger tickets and Bills of Lading, with batch printing and export','Branch sales, connecting-trip and daily overall reports in PDF and Excel','Trip changes (upgrade, reschedule, transfer) with a full history','Visual seat and berth picker for bookings','Online booking with Xendit payments','Printing set up for dot-matrix carbon-copy forms'],
+ role:'Built new features and fixed issues from the database to the screens to the printed output.',tech:['CakePHP','AngularJS','MySQL','FPDF','Xendit']},
+{num:'Project 2',title:'HR and Payroll Reports',images:['images/hris-1.jpg','images/hris-2.jpg'],
+ over:'An employee management system with reports that help HR review staff records and payroll cut-offs.',
+ feat:['Employee list with filters for branch, position, status and vessel','Years in Service report with search and filters','DTR Inclusions report showing cut-off history per employee','Fixes to paging and added columns in the employee module'],
+ role:'Added features and reports, and fixed bugs in the existing module.',tech:['CakePHP','AngularJS','MySQL']},
+{num:'Project 3',title:'Receivables and Accounting',images:['images/receivables-1.jpg','images/receivables-2.jpg'],
+ over:'A module for tracking customer payments and checks, plus a tax codes feature for accounting.',
+ feat:['Bounced check and pulled-out check reports','Check number and replacement balance columns','Corrected balance calculations that were going negative','Overpayment handling when payments change','Withholding tax codes module following Philippine tax rules'],
+ role:'Investigated data issues, fixed calculations and built the tax codes module end to end.',tech:['CakePHP','AngularJS','MySQL']},
+{num:'Project 4',title:'Monitoring Dashboards',images:['images/monitoring-1.jpg','images/monitoring-2.jpg'],
+ over:'Dashboards that let a team follow client projects and daily operations in one place, with a tab for each client.',
+ feat:['Project work plans and contract terms','Upload, list and delete of project documents','Equipment deployment lists and registration summaries','Employee logs by date and payroll cut-off tracking','Monthly calendar-style grids for attendance and trips'],
+ role:'Designed and built the modules, modeling the second dashboard on the first.',tech:['CakePHP','AngularJS']},
+{num:'Project 5',title:'Records Management System',images:['images/ermis-1.jpg','images/ermis-2.jpg'],
+ over:'A system for organizing, archiving and reserving records, used to keep documents easy to find.',
+ feat:['Improved dashboard','Calendar view for archived records','Dark mode','Reservations with approve, delete, date columns and printing','Search and select an existing record when making a reservation'],
+ role:'Built interface improvements and the reservation features.',tech:['CakePHP','AngularJS','CSS']}
+];
+var modal=document.getElementById('modal'),cur=null,imgs=[],gi=0,lastFocus=null;
+function showImg(){
+  var has=imgs.length>0;
+  document.getElementById('mBanner').style.display=has?'none':'flex';
+  var im=document.getElementById('mImg');im.style.display=has?'block':'none';
+  if(has){im.src=imgs[gi];im.alt=cur.title+' screenshot '+(gi+1);}
+  var multi=imgs.length>1;
+  ['gPrev','gNext','gCount'].forEach(function(id){document.getElementById(id).style.display=multi?'block':'none'});
+  document.getElementById('gCount').textContent=(gi+1)+' / '+imgs.length;
+}
+function openProject(i){
+  cur=PROJECTS[i];lastFocus=document.activeElement;
+  document.getElementById('mNum').textContent=cur.num;
+  document.getElementById('mTitle').textContent=cur.title;
+  document.getElementById('mOver').textContent=cur.over;
+  document.getElementById('mRole').textContent=cur.role;
+  document.getElementById('mFeat').innerHTML=cur.feat.map(function(f){return '<li>'+f+'</li>'}).join('');
+  document.getElementById('mTech').innerHTML=cur.tech.map(function(t){return '<span class="chip">'+t+'</span>'}).join('');
+  document.getElementById('mBanner').textContent=cur.title;
+  imgs=[];gi=0;showImg();
+  cur.images.forEach(function(src){var t=new Image();t.onload=function(){if(cur&&cur.images.indexOf(src)>-1&&imgs.indexOf(src)<0){imgs.push(src);imgs.sort(function(a,b){return cur.images.indexOf(a)-cur.images.indexOf(b)});showImg();}};t.src=src;});
+  modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+  document.getElementById('mClose').focus();
+}
+function closeProject(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';cur=null;if(lastFocus)lastFocus.focus();}
+function step(d){if(imgs.length){gi=(gi+d+imgs.length)%imgs.length;showImg();}}
+document.querySelectorAll('.project-card').forEach(function(c){
+  c.addEventListener('click',function(){openProject(+c.dataset.i)});
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openProject(+c.dataset.i)}});
 });
+document.getElementById('mClose').onclick=closeProject;
+modal.addEventListener('click',function(e){if(e.target===modal)closeProject()});
+document.getElementById('gPrev').onclick=function(){step(-1)};
+document.getElementById('gNext').onclick=function(){step(1)};
+document.addEventListener('keydown',function(e){if(!modal.classList.contains('open'))return;if(e.key==='Escape')closeProject();if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1);});
 </script>
 </body>
 </html>
